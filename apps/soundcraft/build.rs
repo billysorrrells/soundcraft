@@ -8,20 +8,20 @@
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed=../../assets/app-icon/soundcraft.ico");
-    println!("cargo:rerun-if-env-changed=SOUNDCRAFT_REQUIRE_WINRES");
+    println!("cargo:rerun-if-env-changed=BILLO SOUND_REQUIRE_WINRES");
     if std::env::var("CARGO_CFG_TARGET_OS").as_deref() != Ok("windows") {
         return;
     }
     let mut res = winresource::WindowsResource::new();
     res.set_icon("../../assets/app-icon/soundcraft.ico")
-        .set("ProductName", "SoundCraft")
-        .set("FileDescription", "SoundCraft digital audio workstation")
+        .set("ProductName", "Billo Sound")
+        .set("FileDescription", "Billo Sound digital audio workstation")
         .set("CompanyName", "Learning Machines LLC")
         .set("LegalCopyright", "Copyright (c) the SoundCraft authors. MIT OR Apache-2.0.")
         .set("OriginalFilename", "soundcraft.exe")
         .set("InternalName", "soundcraft");
     if let Err(e) = res.compile() {
-        if std::env::var_os("SOUNDCRAFT_REQUIRE_WINRES").is_some() {
+        if std::env::var_os("BILLO SOUND_REQUIRE_WINRES").is_some() {
             eprintln!("embedding Windows resources failed: {e}");
             std::process::exit(1);
         }

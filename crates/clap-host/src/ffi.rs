@@ -228,9 +228,9 @@ impl Bundle {
         let host = Box::new(clap_host {
             clap_version: CLAP_VERSION,
             host_data: Arc::as_ptr(&state).cast_mut().cast::<c_void>(),
-            name: c"SoundCraft".as_ptr(),
+            name: c"Billo Sound".as_ptr(),
             vendor: c"SoundCraft contributors".as_ptr(),
-            url: c"https://github.com/storytold/soundcraft".as_ptr(),
+            url: c"https://billysorrells.com/billotech/free/".as_ptr(),
             version: c"0.1.0".as_ptr(),
             get_extension: Some(host_get_extension),
             request_restart: Some(host_request_restart),
@@ -831,7 +831,7 @@ impl GuiLink {
             if hostwin::SUPPORTED && unsafe { supported(g.plugin, api.as_ptr(), false) } {
                 return self.open_embedded(&mut g, vt, api, title);
             }
-            return Err("this plugin offers only an embedded editor, which SoundCraft hosts on Windows only".into());
+            return Err("this plugin offers only an embedded editor, which Billo Sound hosts on Windows only".into());
         }
         self.host.gui_closed.store(false, Ordering::Relaxed);
         self.host.gui_destroyed.store(false, Ordering::Relaxed);
@@ -1469,7 +1469,7 @@ mod hostwin {
         static CLASS: OnceLock<Option<Vec<u16>>> = OnceLock::new();
         CLASS
             .get_or_init(|| {
-                let name = wide("SoundCraftClapEditor");
+                let name = wide("Billo SoundClapEditor");
                 // SAFETY: null asks for this process's module handle.
                 let instance = unsafe { GetModuleHandleW(std::ptr::null()) };
                 let wc = WNDCLASSEXW {

@@ -2756,7 +2756,7 @@ mod tests {
     fn harness_with(engine: soundcraft_engine::Engine) -> Harness<'static, SoundApp> {
         let app = SoundApp::new(engine, None, crate::Services::default());
         let builder = Harness::builder().with_size(vec2(1400.0, 900.0)).with_step_dt(1.0 / 60.0);
-        let builder = if std::env::var_os("SOUNDCRAFT_FADE_SHOTS").is_some() { builder.wgpu() } else { builder };
+        let builder = if std::env::var_os("BILLO SOUND_FADE_SHOTS").is_some() { builder.wgpu() } else { builder };
         let mut h = builder.build_ui_state(
             |ui, app: &mut SoundApp| {
                 let ctx = ui.ctx().clone();
@@ -3060,7 +3060,7 @@ mod tests {
     }
 
     fn fade_shot(h: &mut Harness<SoundApp>, name: &str) {
-        if let Some(dir) = std::env::var_os("SOUNDCRAFT_FADE_SHOTS") {
+        if let Some(dir) = std::env::var_os("BILLO SOUND_FADE_SHOTS") {
             let dir = std::path::PathBuf::from(dir);
             std::fs::create_dir_all(&dir).unwrap();
             h.render().unwrap().save(dir.join(format!("{name}.png"))).unwrap();
